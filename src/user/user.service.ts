@@ -15,6 +15,10 @@ export class UserService {
   async findOneUser(id: string): Promise<User> {
     return this.userModel.findById(id).exec();
   }
+
+  async findByEmailID(email: string): Promise<User> {
+    return this.userModel.findOne({ email }).exec();
+  }
   async updateUser(id: string, userData: UserDocument): Promise<User> {
     return this.userModel
       .findByIdAndUpdate(id, userData, { new: false })

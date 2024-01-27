@@ -26,4 +26,11 @@ export class ToDoService {
   ): Promise<ToDoDocument[]> {
     return this.todoSchema.find({ userID, status }).exec();
   }
+
+  async updateTaskByUserID(
+    userID: string,
+    data: ToDoDocument,
+  ): Promise<ToDoDocument> {
+    return this.todoSchema.findByIdAndUpdate({ userID, data }).exec();
+  }
 }

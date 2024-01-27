@@ -24,6 +24,11 @@ export class UserController {
     return this.userSvc.findOneUser(id);
   }
 
+  @Get(':userID')
+  async findByEmailID(@Param('userID') userID: string): Promise<User> {
+    return this.userSvc.findByEmailID(userID);
+  }
+
   @Put(':id')
   async updateUser(
     @Param('id') id: string,

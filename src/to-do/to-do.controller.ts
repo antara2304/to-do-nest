@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ToDoService } from './to-do.service';
 import { ToDoDocument, taskStatus } from './to-do.schema';
 
@@ -27,5 +27,13 @@ export class ToDoController {
     @Param('status') status: taskStatus,
   ) {
     return this.todoSvc.findByUserIdAndStatus(userID, status);
+  }
+
+  @Put('update/:id')
+  async updateTaskByUserID(
+    @Param('id') userID: string,
+    @Body() updatedData: ToDoDocument,
+  ): Promise<ToDoDocument> {
+    return this.todoSvc.updateTaskByUserID(userID, updatedData);
   }
 }

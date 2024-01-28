@@ -17,7 +17,7 @@ export class ToDoService {
   }
 
   async loadAllByUserID(userID: string): Promise<ToDoDocument[]> {
-    return this.todoSchema.find({ userID }).exec();
+    return this.todoSchema.find({ userID }).sort({ _id: -1 }).exec();
   }
 
   async findByUserIdAndStatus(
@@ -28,9 +28,15 @@ export class ToDoService {
   }
 
   async updateTaskByUserID(
-    userID: string,
+    todoID: string,
     data: ToDoDocument,
   ): Promise<ToDoDocument> {
-    return this.todoSchema.findByIdAndUpdate({ userID, data }).exec();
+    return this.todoSchema
+      .findByIdAndUpdate(todoID, data, { new: false })
+      .exec();
+  }
+
+  async deleteTodo(todoID: string): Promise<ToDoDocument> {
+    return this.todoSchema.findByIdAndDelete(todoID).exec();
   }
 }

@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { ToDoService } from './to-do.service';
 import { ToDoDocument, taskStatus } from './to-do.schema';
 
@@ -29,11 +38,17 @@ export class ToDoController {
     return this.todoSvc.findByUserIdAndStatus(userID, status);
   }
 
-  @Put('update/:id')
+  @Put('update/:todoID')
   async updateTaskByUserID(
-    @Param('id') userID: string,
+    @Param('todoID') todoID: string,
     @Body() updatedData: ToDoDocument,
   ): Promise<ToDoDocument> {
-    return this.todoSvc.updateTaskByUserID(userID, updatedData);
+    return this.todoSvc.updateTaskByUserID(todoID, updatedData);
+  }
+
+  @Delete('delete/:todoID')
+  async deleteTodo(@Param('todoID') todoID: string): Promise<ToDoDocument> {
+    console.log(todoID);
+    return this.todoSvc.deleteTodo(todoID);
   }
 }

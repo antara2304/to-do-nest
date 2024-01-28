@@ -22,6 +22,12 @@ export class ToDo {
 
   @Prop({ type: String, enum: taskStatus, default: taskStatus.TODO })
   status: taskStatus;
+
+  @Prop()
+  date: Date;
+
+  @Prop()
+  isCompleted: boolean;
 }
 
 export const ToDoSchema = SchemaFactory.createForClass(ToDo);

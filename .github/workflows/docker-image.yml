@@ -31,7 +31,7 @@ jobs:
           IMAGE_TAG=${{ github.sha }}
           
           # Build the image using Docker Compose
-          docker-compose -f compose.yaml build
+          docker-compose -f docker-compose.yaml build
 
           # Tag the image with both 'latest' and the commit SHA
           docker tag to-do-server-server:latest $IMAGE_NAME:latest

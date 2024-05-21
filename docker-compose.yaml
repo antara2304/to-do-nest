@@ -32,6 +32,7 @@ services:
     #     - path: .
     #       target: /app
     #       action: sync
+    image: to-do-server-server:latest
     environment:
       - MONGO_URI=mongodb://db:27017/to-do
 # The commented out section below is an example of how to define a PostgreSQL

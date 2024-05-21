@@ -7,7 +7,6 @@ import { ToDoModule } from './to-do/to-do.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  // imports: [AuthModule, UsersModule],
   imports: [
     MongooseModule.forRoot(process.env.MONGO_URI),
     AuthModule,
